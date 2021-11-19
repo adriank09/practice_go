@@ -7,6 +7,7 @@ import (
 	"math"
 	"math/cmplx"
 	"math/rand"
+	"runtime"
 	"time"
 	//"rsc.io/quote"
 )
@@ -22,6 +23,10 @@ var (
 )
 
 func main() {
+
+}
+
+func main_3() {
 	fmt.Println("The time is ", time.Now(), ". OK!")
 	fmt.Println("My favorite number is", rand.Intn(10))
 	fmt.Println("The sqrt for 64 is", math.Sqrt(64))
@@ -68,6 +73,40 @@ func main() {
 		}
 		fmt.Println(sum4)
 		sum4++
+	}
+
+	// runtime switch
+	switch os := runtime.GOOS; os {
+	case "darwin":
+		fmt.Println("macOS")
+	case "linux":
+		fmt.Println("linux")
+	default:
+		fmt.Printf("%s. ¥n", os)
+	}
+
+	// switch
+	today := time.Now().Weekday()
+	switch time.Saturday {
+	case today + 0:
+		fmt.Println("Today")
+	case today + 1:
+		fmt.Println("Tomorrow")
+	case today - 1:
+		fmt.Println("Yesterday")
+	case today + 2:
+		fmt.Println("In two days.")
+	}
+
+	// switch 2
+	t := time.Now()
+	switch {
+	case t.Hour() < 12:
+		fmt.Println("Good morning")
+	case t.Hour() > 12 && t.Hour() < 18:
+		fmt.Println("Good afternoon")
+	case t.Hour() > 18:
+		fmt.Println("Good evening")
 	}
 }
 
