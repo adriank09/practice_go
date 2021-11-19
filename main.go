@@ -36,6 +36,12 @@ func main_struct() {
 	fmt.Println(Vertex{1, 2})
 	fmt.Println(v.X)
 	fmt.Println(v.Y)
+
+	v2 := Vertex{1, 2}
+	p := &v2
+	p.Y = 3
+	fmt.Println(v2)
+	fmt.Println(p)
 }
 
 func main_pointer() {
