@@ -22,8 +22,20 @@ var (
 	z      complex128 = cmplx.Sqrt(-5 + 12i)
 )
 
+type Vertex struct {
+	X int
+	Y int
+}
+
 func main() {
 
+}
+
+func main_struct() {
+	v := Vertex{1, 2}
+	fmt.Println(Vertex{1, 2})
+	fmt.Println(v.X)
+	fmt.Println(v.Y)
 }
 
 func main_pointer() {
