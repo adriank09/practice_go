@@ -23,7 +23,17 @@ var (
 )
 
 func main() {
+	// Defer calls are executed in LIFO order
+	// Defer 1
+	defer fmt.Println("World")
+	fmt.Println("Hello")
 
+	// Defer 2
+	fmt.Println("Counting...")
+	for i := 0; i < 10; i++ {
+		defer fmt.Println(i)
+	}
+	fmt.Println("Done")
 }
 
 func main_3() {
