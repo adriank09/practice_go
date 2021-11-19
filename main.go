@@ -23,6 +23,24 @@ var (
 )
 
 func main() {
+
+}
+
+func main_pointer() {
+	// pointers
+	i, j := 42, 7201
+
+	p := &i
+	fmt.Println(p)
+	*p = 21
+	fmt.Println(i)
+
+	p = &j         // point to j
+	*p = *p / 37   // divide j through the pointer
+	fmt.Println(j) // see the new value of j
+}
+
+func main_4() {
 	// Defer calls are executed in LIFO order
 	// Defer 1
 	defer fmt.Println("World")
