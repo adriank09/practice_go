@@ -27,8 +27,29 @@ type Vertex struct {
 	Y int
 }
 
-func main() {
+func Minus(n1 int, n2 int) int {
+	return n1 - n2
+}
 
+func Multiply(n1 int, n2 int) int {
+	return n1 * n2
+}
+
+func Calculate(n1 int, n2 int, fn func(int, int) int) int {
+	return fn(n1, n2)
+}
+
+func main() {
+	fmt.Println(Calculate(1, 2, Minus))
+	fmt.Println(Calculate(4, 5, Multiply))
+	fmt.Println(Calculate(2, 2, Add))
+
+	// local function
+	divide := func(n1 int, n2 int) int {
+		return n1 / n2
+	}
+
+	fmt.Println(Calculate(10, 2, divide))
 }
 
 func main_map() {
