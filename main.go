@@ -31,6 +31,18 @@ func main() {
 
 }
 
+func main_range() {
+	var num = []int{2, 3, 4, 5, 6, 7, 8}
+	// 1
+	for i, v := range num {
+		fmt.Printf("index %v, value: %v\n", i, v)
+	}
+
+	for _, v := range num {
+		fmt.Println("Value is:", v)
+	}
+}
+
 func main_array_slices() {
 	// Arrays & slices
 	// Array - fixed size
