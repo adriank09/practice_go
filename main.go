@@ -23,11 +23,27 @@ var (
 )
 
 type Vertex struct {
-	X int
-	Y int
+	X float64
+	Y float64
+}
+
+// Go does not have classes. However, one can define methods on types
+func (v Vertex) Abs() float64 {
+	return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
+
+func (v Vertex) Output() string {
+	return fmt.Sprintf("X: %v, Y: %v", v.X, +v.Y)
 }
 
 func main() {
+	v := Vertex{3, 4}
+	fmt.Println(v.Abs())
+	fmt.Println(v.Output())
+
+}
+
+func main_functions() {
 	fmt.Println(Calculate(1, 2, Minus))
 	fmt.Println(Calculate(4, 5, Multiply))
 	fmt.Println(Calculate(2, 2, Add))
