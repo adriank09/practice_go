@@ -31,6 +31,32 @@ func main() {
 
 }
 
+func main_map() {
+	// map of values
+	// method 1
+	// var m map[string]int = make(map[string]int, 2)
+	// m["Adam"] = 42
+	// m["Brian"] = 26
+
+	// method 2
+	var m = map[string]int{
+		"Adam": 42, "Brian": 26,
+	}
+	fmt.Println(m)
+
+	// mutating a map
+	// deleting an element from map
+	delete(m, "Adam")
+	fmt.Println(m)
+
+	// checking the existence of an element in a map
+	var elem, ok = m["Brian"]
+	fmt.Println(elem, ok)
+
+	elem, ok = m["Charlie"]
+	fmt.Println(elem, ok)
+}
+
 func main_range() {
 	var num = []int{2, 3, 4, 5, 6, 7, 8}
 	// 1
