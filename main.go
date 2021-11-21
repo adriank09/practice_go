@@ -31,6 +31,52 @@ func main() {
 
 }
 
+func main_array_slices() {
+	// Arrays & slices
+	// Array - fixed size
+	// Slice - dynamically sized
+
+	// 1
+	var a [2]string
+	fmt.Println(a)
+
+	a[0] = "Hello"
+	a[1] = "World"
+	fmt.Println(a)
+
+	for i := 0; i < len(a); i++ {
+		fmt.Println(a[i])
+	}
+
+	// 2
+	b := [5]int{1, 2, 3, 4, 5}
+	fmt.Println(b)
+
+	// 3
+	s := []struct {
+		A int
+		B bool
+	}{
+		{1, true},
+		{2, false},
+		{3, true},
+	}
+	fmt.Println(s)
+
+	// 4
+	var s2 []int
+	fmt.Println(len(s2), cap(s2))
+	// Creates and allocates an array of the specified size
+	s2 = make([]int, 3)
+	fmt.Println(len(s2), cap(s2))
+
+	// append
+	var s3 []int
+	fmt.Println(s3, len(s3), cap(s3))
+	s3 = append(s3, 1)
+	fmt.Println(s3, len(s3), cap(s3))
+}
+
 func main_struct() {
 	v := Vertex{1, 2}
 	fmt.Println(Vertex{1, 2})
