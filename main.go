@@ -92,6 +92,10 @@ func (s Student) String() string {
 	return fmt.Sprintf("Name: %v, age: %v", s.Name, s.Age)
 }
 
+func (s Student) IsAdult() bool {
+	return s.Age >= 18
+}
+
 func main() {
 	// r := strings.NewReader("Hello world")
 	// b := make([]byte, 8)
@@ -113,4 +117,9 @@ func main() {
 	var s Student
 	s = Student{"Brian", 14}
 	fmt.Println(s)
+	if s.IsAdult() {
+		fmt.Println("You may buy alcohol")
+	} else {
+		fmt.Println("You may not buy alcohol")
+	}
 }
