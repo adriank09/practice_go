@@ -22,10 +22,80 @@ var (
 	z      complex128 = cmplx.Sqrt(-5 + 12i)
 )
 
+type I interface {
+	M()
+}
+type T struct {
+	S string
+}
+type Int struct {
+	I int
+}
+
+// type T implements interface I
+func (t T) M() {
+	fmt.Println(t.S)
+}
+
+func invoke(i I) {
+	fmt.Printf("Type: %T\n", i)
+	//fmt.Println(i.(type))
+	if i == nil {
+		fmt.Println("Object is nil")
+		return
+	}
+	i.M()
+}
+
+func invoke2(i interface{}) {
+	switch v := i.(type) {
+	case int:
+		fmt.Println("Value of integer:", v)
+	case string:
+		fmt.Println("Value of string:", v)
+	case Vertex:
+		fmt.Println("Value of Vertex:", v.X, v.Y)
+	}
+}
+
+type IPAddr [4]byte
+
+// exercise to make IPAddr String()able
+func (ip IPAddr) String() string {
+	return fmt.Sprintf("%v.%v.%v.%v", ip[0], ip[1], ip[2], ip[3])
+}
+
 func main() {
-	v := Vertex{3, 4}
-	fmt.Println(v.Abs())
-	fmt.Println(v.Output())
+	// v := Vertex{3, 4}
+	// fmt.Println(v.Abs())
+	// fmt.Println(v.Output())
+
+	var i I = T{"Hello world"}
+	i.M()
+
+	invoke(i)
+
+	var i2 I
+	invoke(i2)
+
+	// type assertion
+	var i3 interface{} = "hello"
+	r := i3.(string)
+	// r := i3.(float64) // panic will occur - i3 is of type stirng, not float64
+	fmt.Println(r)
+
+	invoke2(3)
+	invoke2("foo")
+	invoke2(Vertex{1, 2})
+
+	// exercise to make IPAddr String()able
+	hosts := map[string]IPAddr{
+		"loopback":  {127, 0, 0, 1},
+		"googleDNS": {8, 8, 8, 8},
+	}
+	for name, ip := range hosts {
+		fmt.Printf("%v: %v\n", name, ip)
+	}
 }
 
 // func main_methods() {
