@@ -37,6 +37,19 @@ func (t T) M() {
 	fmt.Println(t.S)
 }
 
+type MyError struct {
+	When time.Time
+	What string
+}
+
+func (err *MyError) String() string {
+	return fmt.Sprintf("Occured at %v, reason: %v", err.When, err.What)
+}
+
+func err_run() *MyError {
+	return &MyError{time.Now(), "Foo does not contain bar."}
+}
+
 func invoke(i I) {
 	fmt.Printf("Type: %T\n", i)
 	//fmt.Println(i.(type))
@@ -95,6 +108,10 @@ func main() {
 	}
 	for name, ip := range hosts {
 		fmt.Printf("%v: %v\n", name, ip)
+	}
+
+	if err := err_run(); err != nil {
+		fmt.Println(err)
 	}
 }
 
