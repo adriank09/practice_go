@@ -3,12 +3,16 @@ package main
 import (
 	"errors"
 	"fmt"
+	"image"
+	"io"
 	"log"
 	"math"
 	"math/cmplx"
 	"math/rand"
 	"runtime"
 	"time"
+
+	"github.com/google/go-cmp/cmp"
 	//"rsc.io/quote"
 )
 
@@ -78,7 +82,34 @@ func (ip IPAddr) String() string {
 	return fmt.Sprintf("%v.%v.%v.%v", ip[0], ip[1], ip[2], ip[3])
 }
 
+type rot13Reader struct {
+	r io.Reader
+}
+
+func (r rot13Reader) Read(b []byte) (int, error) {
+	return r.Read(b)
+}
+
 func main() {
+	// r := strings.NewReader("Hello world")
+	// b := make([]byte, 8)
+
+	// for {
+	// 	n, err := r.Read(b)
+	// 	fmt.Printf("n = %v err = %v b = %v\n", n, err, b)
+	// 	fmt.Printf("b[:n] = %q\n", b[:n])
+	// 	if err == io.EOF {
+	// 		break
+	// 	}
+	// }
+
+	m := image.NewRGBA(image.Rect(0, 0, 100, 100))
+	fmt.Println(m.Bounds())
+	fmt.Println(m.At(0, 0).RGBA())
+	fmt.Println(cmp.Diff("Hello World", "Hello Go"))
+}
+
+func main_types_and_string() {
 	// v := Vertex{3, 4}
 	// fmt.Println(v.Abs())
 	// fmt.Println(v.Output())
@@ -114,12 +145,6 @@ func main() {
 		fmt.Println(err)
 	}
 }
-
-// func main_methods() {
-// 	v := Vertex{3, 4}
-// 	fmt.Println(v.Abs())
-// 	fmt.Println(v.Output())
-// }
 
 func main_functions() {
 	fmt.Println(Calculate(1, 2, Minus))
