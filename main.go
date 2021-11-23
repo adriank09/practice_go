@@ -5,8 +5,8 @@ import (
 	"io"
 	"math/cmplx"
 	"math/rand"
+	"os"
 	"time"
-	//"rsc.io/quote"
 )
 
 func init() {
@@ -114,12 +114,59 @@ func main() {
 	// fmt.Println(m.At(0, 0).RGBA())
 	// fmt.Println(cmp.Diff("Hello World", "Hello Go"))
 
-	var s Student
-	s = Student{"Brian", 14}
-	fmt.Println(s)
-	if s.IsAdult() {
-		fmt.Println("You may buy alcohol")
-	} else {
-		fmt.Println("You may not buy alcohol")
+	// Demo student
+	// var s Student
+	// s = Student{"Brian", 14}
+	// fmt.Println(s)
+	// if s.IsAdult() {
+	// 	fmt.Println("You may buy alcohol")
+	// } else {
+	// 	fmt.Println("You may not buy alcohol")
+	// }
+
+	// env := os.Environ()
+	// for _, val := range os.Environ() {
+	// 	if
+	// }
+
+	//dir, err := os.Open("")
+
+}
+
+func main_test_array() {
+	// array
+	arr1 := [...]int{1, 2, 3, 4, 5, 6}
+	fmt.Println(arr1)
+	// array's values are copied in its entirety, so, to emulate C's copy by reference,
+	// use &.
+	arr2 := &arr1
+	fmt.Println(arr2)
+	arr1[0] = 9
+	fmt.Println(arr1)
+	fmt.Println(arr2)
+}
+
+func main_test_file() {
+	file, err := os.Open("/Users/adriank09/Desktop/Untitled.rtf")
+	if err != nil {
+		fmt.Println(err)
+		return
 	}
+	// make sure the opened file is closed later
+	defer file.Close()
+
+	var result []byte
+	b := make([]byte, 10240)
+	for {
+		n, err := file.Read(b[0:])
+		result = append(result, b[0:n]...) // append is discussed later
+		if err != nil {
+			if err == io.EOF {
+				break
+			}
+			return // f will be closed if we return here.
+		}
+	}
+
+	fmt.Println(string(result))
 }
