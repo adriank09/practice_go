@@ -5,6 +5,7 @@ import (
 	"io"
 	"math/cmplx"
 	"math/rand"
+	"net/http"
 	"os"
 	"time"
 )
@@ -129,7 +130,32 @@ func main() {
 	// 	if
 	// }
 
-	//dir, err := os.Open("")
+	// // map
+	// students := map[string]int{
+	// 	"Ann": 13,
+	// 	"Joe": 14,
+	// }
+	// person := "Kate"
+	// if age, ok := students[person]; ok { // will be false if person is not in the map
+	// 	fmt.Println(person, "is", age, "years old")
+	// } else {
+	// 	fmt.Println(person, "is not registered.")
+	// }
+	// person = "Ann"
+	// if age, ok := students[person]; ok { // will be false if person is not in the map
+	// 	fmt.Println(person, "is", age, "years old")
+	// }
+	// delete(students, "Ann")
+	// fmt.Println(students)
+
+	response, err := http.Get("https://jsonplaceholder.typicode.com/todos/1")
+	if err != nil {
+		fmt.Println("Error while executing HTTP GET: ", err)
+		return
+	}
+	//defer response.Body.Close()
+	body, _ := io.ReadAll(response.Body)
+	fmt.Println(string(body))
 
 }
 
