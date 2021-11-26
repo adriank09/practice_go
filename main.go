@@ -5,7 +5,6 @@ import (
 	"io"
 	"math/cmplx"
 	"math/rand"
-	"net/http"
 	"os"
 	"time"
 )
@@ -148,14 +147,20 @@ func main() {
 	// delete(students, "Ann")
 	// fmt.Println(students)
 
-	response, err := http.Get("https://jsonplaceholder.typicode.com/todos/1")
-	if err != nil {
-		fmt.Println("Error while executing HTTP GET: ", err)
-		return
+	// response, err := http.Get("https://jsonplaceholder.typicode.com/todos/1")
+	// if err != nil {
+	// 	fmt.Println("Error while executing HTTP GET: ", err)
+	// 	return
+	// }
+	// //defer response.Body.Close()
+	// body, _ := io.ReadAll(response.Body)
+	// fmt.Println(string(body))
+
+	if len(os.Args) > 0 {
+		for i := 0; i < len(os.Args); i++ {
+			fmt.Println(os.Args[i])
+		}
 	}
-	//defer response.Body.Close()
-	body, _ := io.ReadAll(response.Body)
-	fmt.Println(string(body))
 
 }
 
